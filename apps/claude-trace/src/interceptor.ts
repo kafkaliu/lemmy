@@ -18,6 +18,7 @@ export class ClaudeTrafficLogger {
 	private pairs: RawPair[] = [];
 	private config: InterceptorConfig;
 	private htmlGenerator: HTMLGenerator;
+	private anthropicBaseUrl: string;
 
 	constructor(config: InterceptorConfig = {}) {
 		this.config = {
@@ -32,6 +33,9 @@ export class ClaudeTrafficLogger {
 		if (!fs.existsSync(this.logDir)) {
 			fs.mkdirSync(this.logDir, { recursive: true });
 		}
+
+		// Get Anthropic base URL from environment variable, fallback to default
+		this.anthropicBaseUrl = process.env.ANTHROPIC_BASE_URL || "api.anthropic.com";
 
 		// Generate timestamped filenames
 		const timestamp = new Date().toISOString().replace(/[:.]/g, "-").replace("T", "-").slice(0, -5); // Remove milliseconds and Z
@@ -51,10 +55,10 @@ export class ClaudeTrafficLogger {
 		const includeAllRequests = process.env.CLAUDE_TRACE_INCLUDE_ALL_REQUESTS === "true";
 
 		if (includeAllRequests) {
-			return urlString.includes("api.anthropic.com"); // Capture all Anthropic API requests
+			return urlString.includes(this.anthropicBaseUrl); // Capture all Anthropic API requests
 		}
 
-		return urlString.includes("api.anthropic.com") && urlString.includes("/v1/messages");
+		return urlString.includes(this.anthropicBaseUrl) && urlString.includes("/v1/messages");
 	}
 
 	private generateRequestId(): string {
