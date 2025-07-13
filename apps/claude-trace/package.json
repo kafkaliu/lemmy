@@ -1,7 +1,7 @@
 {
-	"name": "@mariozechner/claude-trace",
+	"name": "@kafkaliu/claude-trace",
 	"version": "1.0.3",
-	"description": "Record all your interactions with Claude Code as you develop your projects",
+	"description": "Fork of @mariozechner/claude-trace to add support for custom Anthropic base URL and fix the encoding issue when generating the html.",
 	"main": "dist/index.js",
 	"bin": {
 		"claude-trace": "dist/cli.js"
@@ -38,7 +38,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mariozechner/claude-trace.git"
+		"url": "https://github.com/kafkaliu/lemmy.git"
 	},
 	"engines": {
 		"node": ">=16.0.0"
