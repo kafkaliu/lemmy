@@ -9,7 +9,11 @@
     <div id="app"></div>
     
     <script>
-      window.claudeData = JSON.parse(atob('__CLAUDE_LOGGER_DATA_REPLACEMENT_UNIQUE_9487__'));
+      function base64ToUTF8(base64) {
+        return new TextDecoder().decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
+      }
+
+      window.claudeData = JSON.parse(base64ToUTF8('__CLAUDE_LOGGER_DATA_REPLACEMENT_UNIQUE_9487__'));
     </script>
     
     <script>
