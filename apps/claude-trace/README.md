@@ -2,15 +2,23 @@
 
 Record all your interactions with Claude Code as you develop your projects. See everything Claude hides: system prompts, tool outputs, and raw API data in an intuitive web interface.
 
+Fork of @mariozechner/claude-trace to add support for custom Anthropic base URL and fix the encoding issue when generating the html.
+
 ## Install
 
 ```bash
-npm install -g @mariozechner/claude-trace
+npm install -g @kafkaliu/claude-trace
 ```
 
 ## Usage
 
 ```bash
+# Set the base URL in environment variables. If not set, it defaults to `api.anthropic.com`
+export ANTHROPIC_BASE_URL=api.anthropic.com
+
+# Set the OAuth token.
+export ANTHROPIC_AUTH_TOKEN=token
+
 # Start Claude Code with logging
 claude-trace
 
